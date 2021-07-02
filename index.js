@@ -42,12 +42,12 @@ async function main() {
     if (liff.isLoggedIn()) {
       btnLogIn.style.display = "none"
       btnLogOut.style.display = "block"
-      btnOpenWindow.style.display = "none"
+      btnOpenWindow.style.display = "block"
       getUserProfile()
     } else {
       btnLogIn.style.display = "block"
       btnLogOut.style.display = "none"
-      btnOpenWindow.style.display = "block"
+      btnOpenWindow.style.display = "none"
     }
   } else {
     getUserProfile()
