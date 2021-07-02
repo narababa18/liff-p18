@@ -28,5 +28,43 @@ async function main() {
   // Initialize LIFF app)
   
   // Try a LIFF function
+  switch (liff.getOS()) {
+    case "android": body.style.backgroundColor = "#d1f5d3"; break
+    case "ios": body.style.backgroundColor = "#eeeeee"; break
+  }
+  getUserProfile()
+  if (!liff.isInClient()) {
+    btnLogIn.style.display = "block"
+    btnLogOut.style.display = "block"
+  }
+  if (!liff.isInClient()) {
+    if (liff.isLoggedIn()) {
+      btnLogIn.style.display = "none"
+      btnLogOut.style.display = "block"
+      getUserProfile()
+    } else {
+      btnLogIn.style.display = "block"
+      btnLogOut.style.display = "none"
+    }
+  } else {
+    getUserProfile()
+  }
 }
+
+
 main()
+async function getUserProfile() {
+  const profile = await liff.getProfile()
+  pictureUrl.src = profile.pictureUrl
+  userId.innerHTML = "<b>userId:</b> " + profile.userId
+  statusMessage.innerHTML = "<b>statusMessage:</b> " + profile.statusMessage
+  displayName.innerHTML = "<b>displayName:</b> " + profile.displayName
+}
+btnLogIn.onclick = () => {
+  liff.login()
+}
+
+btnLogOut.onclick = () => {
+  liff.logout()
+  window.location.reload()
+}
