@@ -36,15 +36,18 @@ async function main() {
   if (!liff.isInClient()) {
     btnLogIn.style.display = "block"
     btnLogOut.style.display = "block"
+    btnOpenWindow.style.display = "block"
   }
   if (!liff.isInClient()) {
     if (liff.isLoggedIn()) {
       btnLogIn.style.display = "none"
       btnLogOut.style.display = "block"
+      btnOpenWindow.style.display = "none"
       getUserProfile()
     } else {
       btnLogIn.style.display = "block"
       btnLogOut.style.display = "none"
+      btnOpenWindow.style.display = "block"
     }
   } else {
     getUserProfile()
@@ -67,4 +70,11 @@ btnLogIn.onclick = () => {
 btnLogOut.onclick = () => {
   liff.logout()
   window.location.reload()
+}
+
+btnOpenWindow.onclick = () => {
+  liff.openWindow({
+    url: window.location.href,
+    external: true
+  })
 }
