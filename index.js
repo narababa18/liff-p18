@@ -74,7 +74,7 @@ btnLogOut.onclick = () => {
 
 btnOpenWindow.onclick = () => {
   liff.openWindow({
-    url: "/page2.HTML",
+    url: window.location.href,
     external: false
   })
 }
